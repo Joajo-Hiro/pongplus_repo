@@ -1,15 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbkwj27t45lc0"]
+[gd_scene load_steps=11 format=3 uid="uid://cbkwj27t45lc0"]
 
 [ext_resource type="Texture2D" uid="uid://c2mm36dal2ihn" path="res://pongplus_board.png" id="1_okgu2"]
 [ext_resource type="Texture2D" uid="uid://bpqwl1t0tx7rt" path="res://pong_ball.png" id="2_tpllk"]
 [ext_resource type="Texture2D" uid="uid://cf60irvtnjtuv" path="res://pong_bar.png" id="3_dfwke"]
 [ext_resource type="FontFile" uid="uid://dq30n0vpag4pt" path="res://Square.ttf" id="4_xfsty"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbfj0"]
+friction = 0.0
+bounce = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1inct"]
 size = Vector2(7, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywv3o"]
 size = Vector2(8, 7.39655)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d8w6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhpx3"]
 
@@ -21,71 +27,77 @@ size = Vector2(8, 7.39655)
 position = Vector2(422, 195)
 texture = ExtResource("1_okgu2")
 
-[node name="PongBall" type="Sprite2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(422, 195)
-texture = ExtResource("2_tpllk")
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_nbfj0")
+gravity_scale = 0.0
+linear_velocity = Vector2(500, 0)
+linear_damp_mode = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="PongBall"]
-
-[node name="BallCollision" type="CollisionShape2D" parent="PongBall/StaticBody2D"]
+[node name="BallCollision" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_1inct")
 
-[node name="PongBarLeft" type="Sprite2D" parent="."]
+[node name="PongBall" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_tpllk")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(12, 195)
+
+[node name="PongBarLeft" type="Sprite2D" parent="StaticBody2D2"]
 texture = ExtResource("3_dfwke")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="PongBarLeft"]
-
-[node name="Top" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+[node name="Top" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, -14.19)
 scale = Vector2(0.88, 0.895)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="MidTop" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+[node name="MidTop" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, -7.30499)
 scale = Vector2(0.88, 0.965)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="Center" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+[node name="Center" type="CollisionShape2D" parent="StaticBody2D2"]
 scale = Vector2(0.88, 1)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="MidBott" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+[node name="MidBott" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, 7.30499)
 scale = Vector2(0.88, 0.965)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="Bott" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+[node name="Bott" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, 14.19)
 scale = Vector2(0.88, 0.895)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="PongBarRight" type="Sprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(832, 195)
+physics_material_override = SubResource("PhysicsMaterial_d8w6w")
+
+[node name="PongBarRight" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("3_dfwke")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="PongBarRight"]
-
-[node name="Top" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+[node name="Top" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -14.19)
 scale = Vector2(0.88, 0.895)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="MidTop" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+[node name="MidTop" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -7.30499)
 scale = Vector2(0.88, 0.965)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="Center" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+[node name="Center" type="CollisionShape2D" parent="StaticBody2D"]
 scale = Vector2(0.88, 1)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="MidBott" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+[node name="MidBott" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 7.30499)
 scale = Vector2(0.88, 0.965)
 shape = SubResource("RectangleShape2D_ywv3o")
 
-[node name="Bott" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+[node name="Bott" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 14.19)
 scale = Vector2(0.88, 0.895)
 shape = SubResource("RectangleShape2D_ywv3o")
@@ -107,19 +119,19 @@ offset_top = 10.0
 offset_right = 490.0
 offset_bottom = 53.0
 theme_override_fonts/font = ExtResource("4_xfsty")
-theme_override_font_sizes/font_size = 38
-text = "11"
+theme_override_font_sizes/font_size = 36
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GoalLeft" type="StaticBody2D" parent="."]
-position = Vector2(-5, 195)
-scale = Vector2(0.5, 20)
+[node name="GoalLeft" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft"]
+position = Vector2(-5, 195)
+scale = Vector2(0.5, 20)
 shape = SubResource("RectangleShape2D_nhpx3")
 
-[node name="GoalRight" type="StaticBody2D" parent="."]
+[node name="GoalRight" type="Area2D" parent="."]
 position = Vector2(849, 195)
 scale = Vector2(0.5, 20)
 
