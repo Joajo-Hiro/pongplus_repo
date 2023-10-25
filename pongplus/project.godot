@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="pongplus"
+run/main_scene="res://pong_game.tscn"
+config/features=PackedStringArray("4.1", "Mobile")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=844
+window/size/viewport_height=390
+window/stretch/mode="viewport"
+window/canvas_textures/default_texture_repeat=0
+window/canvas_textures/default_texture_filter=1
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="mobile"

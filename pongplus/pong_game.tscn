@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbkwj27t45lc0"]
+
+[ext_resource type="Texture2D" uid="uid://c2mm36dal2ihn" path="res://pongplus_board.png" id="1_okgu2"]
+[ext_resource type="Texture2D" uid="uid://bpqwl1t0tx7rt" path="res://pong_ball.png" id="2_tpllk"]
+[ext_resource type="Texture2D" uid="uid://cf60irvtnjtuv" path="res://pong_bar.png" id="3_dfwke"]
+[ext_resource type="FontFile" uid="uid://dq30n0vpag4pt" path="res://Square.ttf" id="4_xfsty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1inct"]
+size = Vector2(7, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywv3o"]
+size = Vector2(8, 7.39655)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhpx3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xct08"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PongBoard" type="Sprite2D" parent="."]
+position = Vector2(422, 195)
+texture = ExtResource("1_okgu2")
+
+[node name="PongBall" type="Sprite2D" parent="."]
+position = Vector2(422, 195)
+texture = ExtResource("2_tpllk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PongBall"]
+
+[node name="BallCollision" type="CollisionShape2D" parent="PongBall/StaticBody2D"]
+shape = SubResource("RectangleShape2D_1inct")
+
+[node name="PongBarLeft" type="Sprite2D" parent="."]
+position = Vector2(12, 195)
+texture = ExtResource("3_dfwke")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PongBarLeft"]
+
+[node name="Top" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+position = Vector2(0, -14.19)
+scale = Vector2(0.88, 0.895)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="MidTop" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+position = Vector2(0, -7.30499)
+scale = Vector2(0.88, 0.965)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="Center" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+scale = Vector2(0.88, 1)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="MidBott" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+position = Vector2(0, 7.30499)
+scale = Vector2(0.88, 0.965)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="Bott" type="CollisionShape2D" parent="PongBarLeft/StaticBody2D"]
+position = Vector2(0, 14.19)
+scale = Vector2(0.88, 0.895)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="PongBarRight" type="Sprite2D" parent="."]
+position = Vector2(832, 195)
+texture = ExtResource("3_dfwke")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PongBarRight"]
+
+[node name="Top" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+position = Vector2(0, -14.19)
+scale = Vector2(0.88, 0.895)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="MidTop" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+position = Vector2(0, -7.30499)
+scale = Vector2(0.88, 0.965)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="Center" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+scale = Vector2(0.88, 1)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="MidBott" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+position = Vector2(0, 7.30499)
+scale = Vector2(0.88, 0.965)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="Bott" type="CollisionShape2D" parent="PongBarRight/StaticBody2D"]
+position = Vector2(0, 14.19)
+scale = Vector2(0.88, 0.895)
+shape = SubResource("RectangleShape2D_ywv3o")
+
+[node name="ScoreLeft" type="Label" parent="."]
+offset_left = 362.0
+offset_top = 10.0
+offset_right = 402.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("4_xfsty")
+theme_override_font_sizes/font_size = 34
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreRight" type="Label" parent="."]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 490.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("4_xfsty")
+theme_override_font_sizes/font_size = 38
+text = "11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoalLeft" type="StaticBody2D" parent="."]
+position = Vector2(-5, 195)
+scale = Vector2(0.5, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft"]
+shape = SubResource("RectangleShape2D_nhpx3")
+
+[node name="GoalRight" type="StaticBody2D" parent="."]
+position = Vector2(849, 195)
+scale = Vector2(0.5, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalRight"]
+shape = SubResource("RectangleShape2D_nhpx3")
+
+[node name="BarrierTop" type="StaticBody2D" parent="."]
+position = Vector2(422, 0)
+scale = Vector2(42.2, 0.695)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierTop"]
+shape = SubResource("RectangleShape2D_xct08")
+
+[node name="BarrierBottom" type="StaticBody2D" parent="."]
+position = Vector2(422, 390)
+scale = Vector2(42.2, 0.695)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierBottom"]
+shape = SubResource("RectangleShape2D_xct08")
